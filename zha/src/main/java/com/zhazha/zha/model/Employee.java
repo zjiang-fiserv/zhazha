@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 
 public class Employee {
     @Id
-    private int employeeId;
+    private int id;
     private String employeeName;
     private String employmentStatus;
     private int pin;
@@ -22,18 +22,18 @@ public class Employee {
     }
 
     public int getEmployeeId() {
-        return employeeId;
+        return this.id;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setId(int employeeId) {
+        this.id = employeeId;
     }
 
     public String getEmployeeName() {
         return employeeName;
     }
 
-    public void setemployeeName(String employeeName) {
+    public void setEmployeeName(String employeeName) {
         this.employeeName = employeeName;
     }
 
@@ -45,11 +45,11 @@ public class Employee {
         this.pin = pin;
     }
 
-    public String getemployeeRole() {
+    public String getEmployeeRole() {
         return employeeRole;
     }
 
-    public void setemployeeRole(String employeeRole) {
+    public void setEmployeeRole(String employeeRole) {
         this.employeeRole = employeeRole;
     }
 

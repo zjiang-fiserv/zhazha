@@ -40,7 +40,7 @@ public class EmployeeController {
     @PostMapping("/employees")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Employee> createEmployee(@RequestBody Employee employee) {
-        return employeeService.save(new Employee(employee.getEmployeeName(), employee.getEmploymentStatus(), employee.getPin(), employee.getemployeeRole()));
+        return employeeService.save(new Employee(employee.getEmployeeName(), employee.getEmploymentStatus(), employee.getPin(), employee.getEmployeeRole()));
     }
 
     @DeleteMapping("/employees/{number}")
