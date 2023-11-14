@@ -17,7 +17,7 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Mono<Employee> findByEmployeeID(int number) {
+    public Mono<Employee> findByEmployeeId(int number) {
         return employeeRepository.findById(number);
     }
 

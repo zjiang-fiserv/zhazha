@@ -6,12 +6,17 @@ public class Employee {
     @Id
     private int employeeId;
     private String employeeName;
+    private String employmentStatus;
     private int pin;
     private String employeeRole;
     
-    public Employee(int employeeId, String employeeName, int pin, String employeeRole) {
-        this.employeeId = employeeId;
+    public Employee(){
+
+    }
+
+    public Employee(String employeeName, String employmentStatus, int pin, String employeeRole) {
         this.employeeName = employeeName;
+        this.employmentStatus = employmentStatus;
         this.pin = pin;
         this.employeeRole = employeeRole;
     }
@@ -24,7 +29,7 @@ public class Employee {
         this.employeeId = employeeId;
     }
 
-    public String getemployeeName() {
+    public String getEmployeeName() {
         return employeeName;
     }
 
@@ -46,6 +51,14 @@ public class Employee {
 
     public void setemployeeRole(String employeeRole) {
         this.employeeRole = employeeRole;
+    }
+
+    public String getEmploymentStatus(){
+        return employmentStatus;
+    }
+
+    public void setEmploymentStatus(String employmentStatus){
+        this.employmentStatus = employmentStatus;
     }
 
     

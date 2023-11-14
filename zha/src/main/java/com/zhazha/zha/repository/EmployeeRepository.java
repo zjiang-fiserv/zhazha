@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EmployeeRepository extends R2dbcRepository<Employee, Integer>{
-    Flux<Employee> findByEmployeeID(int number);
+    Flux<Employee> findByEmployeeId(int number);
 
     Flux<Employee> findByEmployeeName(String name);
 
