@@ -4,32 +4,37 @@ import org.springframework.data.annotation.Id;
 
 public class Employee {
     @Id
-    private int employeeId;
-    private String name;
+    private int id;
+    private String employeeName;
+    private String employmentStatus;
     private int pin;
-    private String role;
+    private String employeeRole;
     
-    public Employee(int employeeId, String name, int pin, String role) {
-        this.employeeId = employeeId;
-        this.name = name;
+    public Employee(){
+
+    }
+
+    public Employee(String employeeName, String employmentStatus, int pin, String employeeRole) {
+        this.employeeName = employeeName;
+        this.employmentStatus = employmentStatus;
         this.pin = pin;
-        this.role = role;
+        this.employeeRole = employeeRole;
     }
 
     public int getEmployeeId() {
-        return employeeId;
+        return this.id;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setId(int employeeId) {
+        this.id = employeeId;
     }
 
-    public String getName() {
-        return name;
+    public String getEmployeeName() {
+        return employeeName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
     public int getPin() {
@@ -40,12 +45,20 @@ public class Employee {
         this.pin = pin;
     }
 
-    public String getRole() {
-        return role;
+    public String getEmployeeRole() {
+        return employeeRole;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setEmployeeRole(String employeeRole) {
+        this.employeeRole = employeeRole;
+    }
+
+    public String getEmploymentStatus(){
+        return employmentStatus;
+    }
+
+    public void setEmploymentStatus(String employmentStatus){
+        this.employmentStatus = employmentStatus;
     }
 
     
