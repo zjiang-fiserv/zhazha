@@ -45,11 +45,11 @@ public class EmployeeController {
         return employeeService.save(new Employee(employee.getEmployeeName(), employee.getEmploymentStatus(), employee.getPin(), employee.getEmployeeRole()));
     }
 
-    @PutMapping("/employees/{number}")
-    @ResponseStatus(HttpStatus.OK)
-    public Mono<Employee> updateEmployee(@PathVariable("number") int number, @RequestBody Employee employee) {
-        return employeeService.update(number, employee.getEmploymentStatus(), employee.getEmployeeName(), employee.getEmployeeRole(), employee);
-    }
+    // @PutMapping("/employees/{number}")
+    // @ResponseStatus(HttpStatus.OK)
+    // public Mono<Employee> updateEmployee(@PathVariable("number") int number, @RequestBody Employee employee) {
+    //     return employeeService.update(number, employee.getEmploymentStatus(), employee.getEmployeeName(), employee.getEmployeeRole(), employee);
+    // }
 
     @DeleteMapping("/employees/{number}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
