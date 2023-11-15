@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
 public interface CustomerOrderRepository extends R2dbcRepository<CustomerOrder, Integer>{
     Mono<CustomerOrder> findById(int id);
 
-    Flux<CustomerOrder> findByCustomerId(int customerId);
+    Flux<CustomerOrder> findByCustomerNumber(int customerNumber);
 }

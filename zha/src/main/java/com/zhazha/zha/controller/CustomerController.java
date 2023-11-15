@@ -27,7 +27,7 @@ public class CustomerController {
 
     @GetMapping("/customers")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<Customer> getAllCustomerls(@RequestParam(required = false) String name) {
+    public Flux<Customer> getAllCustomers(@RequestParam(required = false) String name) {
         if (name == null)
             return customerService.findAll();
         else

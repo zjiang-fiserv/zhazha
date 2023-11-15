@@ -19,7 +19,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
-
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
@@ -29,22 +28,27 @@ public class CustomerOrderController {
 
     @GetMapping("/customer_orders")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<CustomerOrder> getAllCustomerOrders(@RequestParam(required = false) int customerId) {
-        return customerOrderService.findByCustomerId(customerId);
+    public Flux<CustomerOrder> getAllCustomerOrders() {
+        return customerOrderService.findAll();
     }
 
-    @GetMapping("/customer_orders/{customerOrderId}")
+    @GetMapping("/customer_orders/")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<CustomerOrder> getOrderByOrderId(@PathVariable("customerOrderId") int customerOrderId) {
-        return customerOrderService.findByCustomerOrderId(customerOrderId);
+    public Flux<CustomerOrder> getOrderByOrderId(@RequestParam(required = false) int customerNumber) {
+        return customerOrderService.findByCustomerNumber(customerNumber);
+    }
+
+     @GetMapping("/customer_orders/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<CustomerOrder> getCustomerOrderById(@PathVariable("id") int id) {
+        return customerOrderService.findById(id);
     }
 
     @PostMapping("/customer_orders")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<CustomerOrder> createCustomerOrder(@RequestBody CustomerOrder customerOrder) {
         return customerOrderService.save(new CustomerOrder(customerOrder.getEmployeeId(), 
-                customerOrder.getCustomerNumber(), customerOrder.getcustomerOrderId(), 
-                customerOrder.getDateTime()));
+                customerOrder.getCustomerNumber()));
     }
 
     @PutMapping("/customer_orders/{customerOrderId}")
@@ -56,7 +60,7 @@ public class CustomerOrderController {
 
     @DeleteMapping("/customer_orders/{customerOrderId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteCustomer(@PathVariable("customerOrderId") int customerOrderId) {
-        return customerOrderService.deleteByCustomerOrderId(customerOrderId);
+    public Mono<Void> deleteCustomerOrder(@PathVariable("customerOrderId") int customerOrderId) {
+        return customerOrderService.deleteById(customerOrderId);
     }
 }

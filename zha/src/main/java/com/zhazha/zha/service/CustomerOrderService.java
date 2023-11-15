@@ -18,12 +18,12 @@ public class CustomerOrderService {
         return customerOrderRepository.findAll();
     }
 
-    public Mono<CustomerOrder> findByCustomerOrderId(int id) {
+    public Mono<CustomerOrder> findById(int id) {
         return customerOrderRepository.findById(id);
     }
 
-    public Flux<CustomerOrder> findByCustomerId(int customerId) {
-        return customerOrderRepository.findByCustomerId(customerId);
+    public Flux<CustomerOrder> findByCustomerNumber(int customerNumber) {
+        return customerOrderRepository.findByCustomerNumber(customerNumber);
     }
 
     public Mono<CustomerOrder> save(CustomerOrder customerOrder) {
@@ -32,8 +32,8 @@ public class CustomerOrderService {
 
     public Mono<CustomerOrder> update(int id, CustomerOrder customerOrder) {
         return customerOrderRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
-                .flatMap(optionalCustomer -> {
-                    if (optionalCustomer.isPresent()) {
+                .flatMap(optionalCustomerOrder -> {
+                    if (optionalCustomerOrder.isPresent()) {
                         customerOrder.setCustomerId(id);
                         return customerOrderRepository.save(customerOrder);
                     }
@@ -41,7 +41,7 @@ public class CustomerOrderService {
                 });
     }
 
-    public Mono<Void> deleteByCustomerOrderId(int id) {
+    public Mono<Void> deleteById(int id) {
         return customerOrderRepository.deleteById(id);
     }
     // SELECT
