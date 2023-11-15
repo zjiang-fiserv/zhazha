@@ -27,23 +27,23 @@ public class ProductController {
 
     @GetMapping("/products")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<Product> getAllCustomerls(@RequestParam(required = false) String name) {
+    public Flux<Product> getAllProducts(@RequestParam(required = false) String name) {
         if (name == null)
             return productService.findAll();
         else
-            return productService.findByName(name);
+            return productService.findByProductName(name);
     }
 
     @GetMapping("/products/{number}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Product> getProductId(@PathVariable("number") int id) {
+    public Mono<Product> getId(@PathVariable("number") int id) {
         return productService.findById(id);
     }
 
     @PostMapping("/products")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Product> createProduct(@RequestBody Product product) {
-        return productService.save(new Product(product.getProductId(), product.getProductName(),
+        return productService.save(new Product(product.getId(), product.getProductName(),
                 product.getProductDescription(), product.getPrice()));
     }
 
