@@ -6,12 +6,12 @@ public class CustomerOrder {
     @Id
     private int customerOrderId;
     private int employeeId;
-    private int customerId;
+    private int customerNumber;
     private String dateTime;
 
-    public CustomerOrder(int employeeId, int customerId, int customerOrderId, String dateTime) {
+    public CustomerOrder(int employeeId, int customerNumber, int customerOrderId, String dateTime) {
         this.employeeId = employeeId;
-        this.customerId = customerId;
+        this.customerNumber = customerNumber;
         this.customerOrderId = customerOrderId;
         this.dateTime = dateTime;
     }
@@ -24,12 +24,12 @@ public class CustomerOrder {
         this.employeeId = employeeId;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getCustomerNumber() {
+        return customerNumber;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomerId(int customerNumber) {
+        this.customerNumber = customerNumber;
     }
 
     public int getcustomerOrderId() {

@@ -1,5 +1,7 @@
 package com.zhazha.zha.model;
 
+import java.util.Set;
+
 // @Entity
 public class Customer {
     private int customerNumber;
@@ -7,8 +9,9 @@ public class Customer {
     private int zip;
     private String customerName;
 
-    // @ManyToOne
-    private CustomerOrder customerOrder;
+    // @OneToMany(cascade=ALL, mappedBy="customer")
+    // public Set<CustomerOrder> getOrders() { return customerOrders;}
+
 
 
     public Customer() {
@@ -54,13 +57,13 @@ public class Customer {
         this.customerName = customerName;
     }
 
-    public CustomerOrder getCustomerOrder() {
-        return customerOrder;
-    }
+    // public CustomerOrder getCustomerOrder() {
+    //     return customerOrder;
+    // }
 
-    public void setCustomerOrder(CustomerOrder customerOrder) {
-        this.customerOrder = customerOrder;
-    }
+    // public void setCustomerOrder(CustomerOrder customerOrder) {
+    //     this.customerOrder = customerOrder;
+    // }
 
     
 }
