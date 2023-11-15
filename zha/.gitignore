@@ -32,4 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-zha/testdb.mv.db
+testdb.mv.db
