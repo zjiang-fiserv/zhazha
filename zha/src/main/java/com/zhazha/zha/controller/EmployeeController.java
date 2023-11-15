@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.zhazha.zha.model.Customer;
 import com.zhazha.zha.model.Employee;
 import com.zhazha.zha.service.EmployeeService;
 import reactor.core.publisher.Flux;
@@ -41,6 +43,12 @@ public class EmployeeController {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Employee> createEmployee(@RequestBody Employee employee) {
         return employeeService.save(new Employee(employee.getEmployeeName(), employee.getEmploymentStatus(), employee.getPin(), employee.getEmployeeRole()));
+    }
+
+    @PutMapping("/employees/{number}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Employee> updateEmployee(@PathVariable("number") int number, @RequestBody Employee employee) {
+        return employeeService.update(number, employee.getEmploymentStatus(), employee.getEmployeeName(), employee.getEmployeeRole(), employee);
     }
 
     @DeleteMapping("/employees/{number}")

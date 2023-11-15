@@ -33,16 +33,18 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    /*public Mono<Customer> update(int number, Customer customer) {
-        return customerRepository.findById(number).map(Optional::of).defaultIfEmpty(Optional.empty())
-                .flatMap(optionalCustomer -> {
-                    if (optionalCustomer.isPresent()) {
-                        customer.setCustomerNumber(number);
-                        return customerRepository.save(customer);
-                    }
-                    return Mono.empty();
-                });
-    }*/
+    // public Mono<Employee> update(int number, String status, String name, String role, Employee employee) {
+    //     return employeeRepository.findById(number).map(Optional::of).defaultIfEmpty(Optional.empty())
+    //             .flatMap(optionalEmployee -> {
+    //                 if (optionalEmployee.isPresent()) {
+    //                     employee.setEmploymentStatus(status);
+    //                     employee.setEmployeeName(name);
+    //                     employee.setEmployeeRole(role);
+    //                     return employeeRepository.save(employee);
+    //                 }
+    //                 return Mono.empty();
+    //             });
+    // }
 
     public Mono<Void> deleteByID(int number) {
         return employeeRepository.deleteById(number);
