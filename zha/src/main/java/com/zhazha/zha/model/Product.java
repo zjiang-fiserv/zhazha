@@ -5,14 +5,14 @@ import org.springframework.data.annotation.Id;
 public class Product {
     @Id
     private int productId;
-    private String name;
-    private String description;
+    private String productName;
+    private String productDescription;
     private float price;
     
     public Product(int productId, String name, String description, float price) {
         this.productId = productId;
-        this.name = name;
-        this.description = description;
+        this.productName = name;
+        this.productDescription = description;
         this.price = price;
     }
 
@@ -24,20 +24,20 @@ public class Product {
         this.productId = productId;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setroductName(String name) {
+        this.productName = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getProductDescription() {
+        return productDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setProductDescription(String description) {
+        this.productDescription = description;
     }
 
     public float getPrice() {

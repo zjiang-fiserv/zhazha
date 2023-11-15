@@ -17,12 +17,12 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Mono<Product> findByProductID(int id) {
-        return productRepository.findByProductId(id);
+    public Mono<Product> findById(int id) {
+        return productRepository.findById(id);
     }
 
     public Flux<Product> findByName(String name) {
-        return productRepository.findByName(name);
+        return productRepository.findByproductName(name);
     }
 
     public Flux<Product> findByDescription(String des) {
@@ -38,7 +38,7 @@ public class ProductService {
     }
 
     public Mono<Product> update(int id, Product product) {
-        return productRepository.findByProductId(id).map(Optional::of).defaultIfEmpty(Optional.empty())
+        return productRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
                 .flatMap(optionalProduct -> {
                     if (optionalProduct.isPresent()) {
                         product.setProductId(id);
@@ -49,6 +49,6 @@ public class ProductService {
     }
 
     public Mono<Void> deleteByNumber(int id) {
-        return productRepository.deleteByProductId(id);
+        return productRepository.deleteById(id);
     }
 }
