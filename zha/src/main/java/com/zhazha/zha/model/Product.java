@@ -4,40 +4,44 @@ import org.springframework.data.annotation.Id;
 
 public class Product {
     @Id
-    private int productId;
-    private String name;
-    private String description;
+    private int id;
+    private String productName;
+    private String productDescription;
     private float price;
+
+    public Product(){
+        
+    }
     
-    public Product(int productId, String name, String description, float price) {
-        this.productId = productId;
-        this.name = name;
-        this.description = description;
+    public Product(int id, String name, String description, float price) {
+        this.id = id;
+        this.productName = name;
+        this.productDescription = description;
         this.price = price;
     }
 
-    public int getProductId() {
-        return productId;
+    public int getId() {
+        return id;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setroductName(String name) {
+        this.productName = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getProductDescription() {
+        return productDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setProductDescription(String description) {
+        this.productDescription = description;
     }
 
     public float getPrice() {
