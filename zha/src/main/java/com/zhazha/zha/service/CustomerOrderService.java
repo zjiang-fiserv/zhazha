@@ -21,7 +21,7 @@ public class CustomerOrderService {
         return customerOrderRepository.findById(id);
     }
 
-    public Flux<CustomerOrder> findByCustomerNumber(int customerNumber) {
+    public Flux<CustomerOrder> findByCustomerNumber(String customerNumber) {
         return customerOrderRepository.findByCustomerNumber(customerNumber);
     }
 
@@ -33,7 +33,7 @@ public class CustomerOrderService {
         return customerOrderRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
                 .flatMap(optionalCustomerOrder -> {
                     if (optionalCustomerOrder.isPresent()) {
-                        customerOrder.setCustomerId(id);
+                        customerOrder.setCustomerId(customerOrder.getCustomerNumber());
                         return customerOrderRepository.save(customerOrder);
                     }
                     return Mono.empty();

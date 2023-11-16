@@ -7,13 +7,13 @@ public class CustomerOrder {
     @Id
     private int id;
     private int employeeId;
-    private int customerNumber;
+    private String customerNumber;
     private LocalDateTime dateTime;
 
     public CustomerOrder() {
     }
 
-    public CustomerOrder(int employeeId, int customerNumber) {
+    public CustomerOrder(int employeeId, String customerNumber) {
         this.employeeId = employeeId;
         this.customerNumber = customerNumber;
         this.dateTime = LocalDateTime.now();
@@ -27,11 +27,11 @@ public class CustomerOrder {
         this.employeeId = employeeId;
     }
 
-    public int getCustomerNumber() {
+    public String getCustomerNumber() {
         return customerNumber;
     }
 
-    public void setCustomerId(int customerNumber) {
+    public void setCustomerId(String customerNumber) {
         this.customerNumber = customerNumber;
     }
 

@@ -36,7 +36,7 @@ public class CustomerController {
 
     @GetMapping("/customers/{number}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Customer> getCustomerById(@PathVariable("number") int number) {
+    public Mono<Customer> getCustomerById(@PathVariable("number") String number) {
         return customerService.findByCustomerNumber(number);
     }
 
@@ -49,19 +49,19 @@ public class CustomerController {
 
     @PutMapping("/customers/{number}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Customer> updateCustomer(@PathVariable("number") int number, @RequestBody Customer customer) {
+    public Mono<Customer> updateCustomer(@PathVariable("number") String number, @RequestBody Customer customer) {
         return customerService.update(number, customer);
     }
 
     @DeleteMapping("/customers/{number}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteCustomer(@PathVariable("number") int number) {
+    public Mono<Void> deleteCustomer(@PathVariable("number") String number) {
         return customerService.deleteByNumber(number);
     }
 
     @GetMapping("/customers/{zip}")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<Customer> findByZipCode(int zip) {
+    public Flux<Customer> findByZipCode(String zip) {
         return customerService.findByZip(zip);
     }
 }

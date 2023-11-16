@@ -1,26 +1,26 @@
 package com.zhazha.zha.model;
 
 public class Customer {
-    private int customerNumber;
+    private String customerNumber;
     private String customerAddress;
-    private int zip;
+    private String zip;
     private String customerName;
 
     public Customer() {
     }
 
-    public Customer(int customerNumber, String customerAddress, int zip, String customerName) {
+    public Customer(String customerNumber, String customerAddress, String zip, String customerName) {
         this.customerNumber = customerNumber;
         this.customerAddress = customerAddress;
         this.zip = zip;
         this.customerName = customerName;
     }
 
-    public int getCustomerNumber() {
+    public String getCustomerNumber() {
         return customerNumber;
     }
 
-    public void setCustomerNumber(int customerNumber) {
+    public void setCustomerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
     }
 
@@ -32,11 +32,11 @@ public class Customer {
         this.customerAddress = customerAddress;
     }
 
-    public int getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZip(int zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 

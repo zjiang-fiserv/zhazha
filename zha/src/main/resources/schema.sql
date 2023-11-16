@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS CUSTOMER (
-    customer_number INT NOT NULL PRIMARY KEY,
+    customer_number VARCHAR(12) NOT NULL PRIMARY KEY,
     customer_address VARCHAR(100),
     customer_name VARCHAR(50),
-    zip int
+    zip VARCHAR(10)
 );
 CREATE TABLE IF NOT EXISTS EMPLOYEE (
     id INT NOT NULL AUTO_INCREMENT,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS PRODUCT(
 CREATE TABLE IF NOT EXISTS CUSTOMER_ORDER (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     employee_id int NOT NULL,
-    customer_number int NOT NULL,
+    customer_number VARCHAR(12) NOT NULL,
     date_time TIMESTAMP,
     foreign key (employee_id) references EMPLOYEE(id),
     foreign key (customer_number) references CUSTOMER(customer_number)
