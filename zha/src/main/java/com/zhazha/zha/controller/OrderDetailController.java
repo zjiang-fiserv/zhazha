@@ -47,7 +47,7 @@ public class OrderDetailController {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<OrderDetail> createOrderDetail(@RequestBody OrderDetail orderDetail) {
         return orderDetailService.save(new OrderDetail(orderDetail.getCustomerOrderId(),
-                orderDetail.getDiscount()));
+                orderDetail.getDiscount(),orderDetail.getDiscount()));
         // need to add get total to the order detail object at creation.
     }
 
@@ -55,7 +55,7 @@ public class OrderDetailController {
     @ResponseStatus(HttpStatus.OK)
     public Mono<OrderDetail> updateOrderDetail(@PathVariable("orderDetailId") int orderDetailId,
             @RequestBody OrderDetail orderDetail) {
-        return orderDetailService.update(orderDetail.getCustomerOrderId(), orderDetail.getDiscount(), orderDetail);
+        return orderDetailService.update(orderDetail.getCustomerOrderId(), orderDetail.getTotal(), orderDetail.getDiscount(), orderDetail);
     }
 
     @DeleteMapping("/order_details/{orderDetailId}")
