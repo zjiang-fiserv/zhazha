@@ -33,7 +33,7 @@ public class CustomerOrderController {
 
     @GetMapping("/customer_orders/")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<CustomerOrder> getOrderByOrderId(@RequestParam(required = false) int customerNumber) {
+    public Flux<CustomerOrder> getOrderByOrderId(@RequestParam(required = false) String customerNumber) {
         return customerOrderService.findByCustomerNumber(customerNumber);
     }
 

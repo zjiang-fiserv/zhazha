@@ -17,7 +17,7 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public Mono<Customer> findByCustomerNumber(int number) {
+    public Mono<Customer> findByCustomerNumber(String number) {
         return customerRepository.findById(number);
     }
 
@@ -29,7 +29,7 @@ public class CustomerService {
         return customerRepository.findByCustomerAddress(address);
     }
 
-    public Flux<Customer> findByZip(int zip) {
+    public Flux<Customer> findByZip(String zip) {
         return customerRepository.findByZip(zip);
     }
 
@@ -37,7 +37,7 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public Mono<Customer> update(int number, Customer customer) {
+    public Mono<Customer> update(String number, Customer customer) {
         return customerRepository.findById(number).map(Optional::of).defaultIfEmpty(Optional.empty())
                 .flatMap(optionalCustomer -> {
                     if (optionalCustomer.isPresent()) {
@@ -48,7 +48,7 @@ public class CustomerService {
                 });
     }
 
-    public Mono<Void> deleteByNumber(int number) {
+    public Mono<Void> deleteByNumber(String number) {
         return customerRepository.deleteById(number);
     }
 }
