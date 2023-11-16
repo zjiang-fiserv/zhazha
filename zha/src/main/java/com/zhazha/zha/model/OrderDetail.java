@@ -8,6 +8,8 @@ public class OrderDetail {
     private int customerOrderId;
     private int discount;
     private float total;
+
+    public OrderDetail(){};
     
     public OrderDetail(int customerOrderId, int discount) {
         this.customerOrderId = customerOrderId;
@@ -28,10 +30,17 @@ public class OrderDetail {
 
     public void setDiscount(int discount) {
         this.discount = discount;
+        // calcTotal() would be called here
     }
+
+    public int getDiscount() {return this.discount; }
 
     public void calcTotal() {
         // this.total = impelment getting all items on order from order item table
+    }
+
+    public float getTotal() {
+        return this.total;
     }
 
     
