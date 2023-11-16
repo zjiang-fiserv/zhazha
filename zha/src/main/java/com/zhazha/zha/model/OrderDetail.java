@@ -4,23 +4,18 @@ import org.springframework.data.annotation.Id;
 
 public class OrderDetail {
     @Id
-    private int orderDetailId;
+    private int id;
     private int customerOrderId;
-    private float discount;
+    private int discount;
     private float total;
     
-    public OrderDetail(int orderDetailId, int customerOrderId, float discount) {
-        this.orderDetailId = orderDetailId;
+    public OrderDetail(int customerOrderId, int discount) {
         this.customerOrderId = customerOrderId;
         this.discount = discount;
     }
 
-    public int getOrderDetailId() {
-        return orderDetailId;
-    }
-
-    public void setOrderDetailId(int orderDetailId) {
-        this.orderDetailId = orderDetailId;
+    public int getID() {
+        return id;
     }
 
     public int getCustomerOrderId() {
@@ -31,8 +26,12 @@ public class OrderDetail {
         this.customerOrderId = customerOrderId;
     }
 
-    public void setDiscount(float discount) {
+    public void setDiscount(int discount) {
         this.discount = discount;
+    }
+
+    public void calcTotal() {
+        // this.total = impelment getting all items on order from order item table
     }
 
     

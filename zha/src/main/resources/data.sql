@@ -1,0 +1,12 @@
+-- INSERT INTO CUSTOMER (customer_number, customer_address, customer_name, zip) VALUES 
+-- (1234567890, "123 Connell Dr", "Frank", 12345);
+-- INSERT INTO EMPLOYEE (id, employee_name, employment_status, pin, employee_role) VALUES
+-- (1, "Guy", "Full", 1234, "Manager");
+-- INSERT INTO PRODUCT (id, product_name, product_description, price) VALUES
+-- (1, "Pepperoni", "18 inches", 20.00);
+-- INSERT INTO CUSTOMER_ORDER (id, employee_id, customer_number, date_time) VALUES 
+-- (1, 1, 1234567890, 1970-01-01 00:00:00);
+-- INSERT INTO Order_Item (id, product_id, customer_order_id, quantity) VALUES 
+-- (1, 1, 1, 5);
+-- INSERT INTO Order_Detail (id, customer_order_id, discount, total) VALUES
+-- (1, 1, 10, 90)
