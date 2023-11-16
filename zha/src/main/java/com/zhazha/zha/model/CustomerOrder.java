@@ -1,19 +1,22 @@
 package com.zhazha.zha.model;
 
 import org.springframework.data.annotation.Id;
+import java.time.LocalDateTime;
 
 public class CustomerOrder {
     @Id
-    private int customerOrderId;
+    private int id;
     private int employeeId;
-    private int customerId;
-    private String dateTime;
+    private int customerNumber;
+    private LocalDateTime dateTime;
 
-    public CustomerOrder(int employeeId, int customerId, int customerOrderId, String dateTime) {
+
+    public CustomerOrder(){}
+
+    public CustomerOrder(int employeeId, int customerNumber) {
         this.employeeId = employeeId;
-        this.customerId = customerId;
-        this.customerOrderId = customerOrderId;
-        this.dateTime = dateTime;
+        this.customerNumber = customerNumber;
+        this.dateTime = LocalDateTime.now();
     }
 
     public int getEmployeeId() {
@@ -24,29 +27,24 @@ public class CustomerOrder {
         this.employeeId = employeeId;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getCustomerNumber() {
+        return customerNumber;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomerId(int customerNumber) {
+        this.customerNumber = customerNumber;
     }
 
-    public int getcustomerOrderId() {
-        return customerOrderId;
+    public int getId() {
+        return id;
     }
 
-    public void setcustomerOrderId(int customerOrderId) {
-        this.customerOrderId = customerOrderId;
+    public void setId(int Id) {
+        this.id = Id;
     }
 
-    public String getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
-
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
-    }
-
     
 }
