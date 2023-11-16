@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.zhazha.zha.model.CustomerOrder;
 import com.zhazha.zha.service.CustomerOrderService;
+import com.zhazha.zha.model.OrderItem;
+import com.zhazha.zha.service.OrderItemService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -24,6 +26,7 @@ import reactor.core.publisher.Mono;
 public class CustomerOrderController {
     @Autowired
     CustomerOrderService customerOrderService;
+    OrderItemService orderItemService;
 
     @GetMapping("/customer_orders")
     @ResponseStatus(HttpStatus.OK)
@@ -43,12 +46,33 @@ public class CustomerOrderController {
         return customerOrderService.findById(id);
     }
 
+    @GetMapping("/customer_orders/{customerOrderId}/orders")
+    @ResponseStatus(HttpStatus.OK)
+    public Flux<OrderItem> getOrderByCustomerId(@PathVariable("customerOrderId") int customerOrderId) {
+        return orderItemService.findByCustomerOrderId(customerOrderId);
+    }
+
     @PostMapping("/customer_orders")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<CustomerOrder> createCustomerOrder(@RequestBody CustomerOrder customerOrder) {
         return customerOrderService.save(new CustomerOrder(customerOrder.getEmployeeId(),
                 customerOrder.getCustomerNumber()));
     }
+
+    @PostMapping("/customer_orders/{customerOrderId}/orders")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<OrderItem> createOrderItem(@RequestBody OrderItem orderItem) {
+
+        //if statement to default to 1
+        // if (orderItem.getQuantity() == 0) {
+        //     orderItem.setQuantity(1);
+        // }
+
+        return orderItemService.save(new OrderItem(orderItem.getCustomerOrderId(),
+                orderItem.getProductId(), orderItem.getQuantity()));
+    }
+
+    //Potentially update method for OrderItem
 
     @PutMapping("/customer_orders/{customerOrderId}")
     @ResponseStatus(HttpStatus.OK)
