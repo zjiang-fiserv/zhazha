@@ -10,8 +10,8 @@ public class CustomerOrder {
     private int customerNumber;
     private LocalDateTime dateTime;
 
-
-    public CustomerOrder(){}
+    public CustomerOrder() {
+    }
 
     public CustomerOrder(int employeeId, int customerNumber) {
         this.employeeId = employeeId;
@@ -46,5 +46,5 @@ public class CustomerOrder {
     public LocalDateTime getDateTime() {
         return dateTime;
     }
-    
+
 }

@@ -1,9 +1,8 @@
 package com.zhazha.zha.service;
+
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.zhazha.zha.model.Customer;
 import com.zhazha.zha.model.CustomerOrder;
 import com.zhazha.zha.repository.CustomerOrderRepository;
 import reactor.core.publisher.Flux;
@@ -45,15 +44,15 @@ public class CustomerOrderService {
         return customerOrderRepository.deleteById(id);
     }
     // SELECT
-    //     co.customerOrderId,
-    //     co.employeeId,
-    //     co.customerNumber,
-    //     co.dateTime,
+    // co.customerOrderId,
+    // co.employeeId,
+    // co.customerNumber,
+    // co.dateTime,
     // FROM
-    //     CustomerOrder co
+    // CustomerOrder co
     // JOIN
-    //     Customer c ON co.customerNumber = c.customerNumber
+    // Customer c ON co.customerNumber = c.customerNumber
     // WHERE
-    //     c.customerNumber = [desired_customer_number];
-    //sqlquery for selecting customerorder with customer phone number
+    // c.customerNumber = [desired_customer_number];
+    // sqlquery for selecting customerorder with customer phone number
 }

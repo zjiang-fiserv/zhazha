@@ -18,7 +18,6 @@ import com.zhazha.zha.service.CustomerOrderService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
@@ -38,7 +37,7 @@ public class CustomerOrderController {
         return customerOrderService.findByCustomerNumber(customerNumber);
     }
 
-     @GetMapping("/customer_orders/{id}")
+    @GetMapping("/customer_orders/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Mono<CustomerOrder> getCustomerOrderById(@PathVariable("id") int id) {
         return customerOrderService.findById(id);
@@ -47,14 +46,14 @@ public class CustomerOrderController {
     @PostMapping("/customer_orders")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<CustomerOrder> createCustomerOrder(@RequestBody CustomerOrder customerOrder) {
-        return customerOrderService.save(new CustomerOrder(customerOrder.getEmployeeId(), 
+        return customerOrderService.save(new CustomerOrder(customerOrder.getEmployeeId(),
                 customerOrder.getCustomerNumber()));
     }
 
     @PutMapping("/customer_orders/{customerOrderId}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<CustomerOrder> updateCustomerOrder(@PathVariable("customerOrderId") int customerOrderId, 
-        @RequestBody CustomerOrder customerOrder) {
+    public Mono<CustomerOrder> updateCustomerOrder(@PathVariable("customerOrderId") int customerOrderId,
+            @RequestBody CustomerOrder customerOrder) {
         return customerOrderService.update(customerOrderId, customerOrder);
     }
 

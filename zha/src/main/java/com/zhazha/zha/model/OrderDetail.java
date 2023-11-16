@@ -9,8 +9,9 @@ public class OrderDetail {
     private int discount;
     private float total;
 
-    public OrderDetail(){};
-    
+    public OrderDetail() {
+    };
+
     public OrderDetail(int customerOrderId, int discount) {
         this.customerOrderId = customerOrderId;
         this.discount = discount;
@@ -33,7 +34,9 @@ public class OrderDetail {
         // calcTotal() would be called here
     }
 
-    public int getDiscount() {return this.discount; }
+    public int getDiscount() {
+        return this.discount;
+    }
 
     public void calcTotal() {
         // this.total = impelment getting all items on order from order item table
@@ -43,5 +46,4 @@ public class OrderDetail {
         return this.total;
     }
 
-    
 }
