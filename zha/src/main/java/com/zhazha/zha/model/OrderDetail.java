@@ -12,9 +12,10 @@ public class OrderDetail {
     public OrderDetail() {
     };
 
-    public OrderDetail(int customerOrderId, int discount) {
+    public OrderDetail(int customerOrderId, float total, int discount) {
         this.customerOrderId = customerOrderId;
         this.discount = discount;
+        this.total = total;
     }
 
     public int getID() {
