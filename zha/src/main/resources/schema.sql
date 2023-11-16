@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS Order_Detail (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     customer_order_id int NOT NULL,
     discount int,
-    total float NOT NULL,
+    total float,
     foreign key (customer_order_id) references CUSTOMER_ORDER(id)
 );
 
