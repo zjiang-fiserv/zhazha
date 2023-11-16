@@ -1,6 +1,7 @@
 package com.zhazha.zha.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.TrueCondition;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +27,7 @@ import reactor.core.publisher.Mono;
 public class CustomerOrderController {
     @Autowired
     CustomerOrderService customerOrderService;
+    @Autowired
     OrderItemService orderItemService;
 
     @GetMapping("/customer_orders")
@@ -59,17 +61,17 @@ public class CustomerOrderController {
                 customerOrder.getCustomerNumber()));
     }
 
-    @PostMapping("/customer_orders/{customerOrderId}/orders")
+    @PostMapping("/customer_orders/orders")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<OrderItem> createOrderItem(@RequestBody OrderItem orderItem) {
+    public Mono<OrderItem> createOrderItem(@RequestParam(required = true) int customerOrderId, int productId, int quantity) {
 
         //if statement to default to 1
         // if (orderItem.getQuantity() == 0) {
         //     orderItem.setQuantity(1);
         // }
 
-        return orderItemService.save(new OrderItem(orderItem.getCustomerOrderId(),
-                orderItem.getProductId(), orderItem.getQuantity()));
+        return orderItemService.save(new OrderItem(customerOrderId,
+                productId, quantity));
     }
 
     //Potentially update method for OrderItem
