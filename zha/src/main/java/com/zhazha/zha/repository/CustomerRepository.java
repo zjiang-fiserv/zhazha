@@ -8,7 +8,9 @@ import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomerRepository extends R2dbcRepository<Customer, String>{ 
+public interface CustomerRepository extends R2dbcRepository<Customer, Integer>{ 
+    Mono<Customer> findById(int id);
+    
     Flux<Customer> findByCustomerNumber(String number);
 
     Flux<Customer> findByCustomerName(String name);

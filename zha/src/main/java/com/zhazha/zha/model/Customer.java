@@ -3,11 +3,12 @@ package com.zhazha.zha.model;
 import org.springframework.data.annotation.Id;
 
 public class Customer {
-    @Id
     private String customerNumber;
     private String customerAddress;
     private String zip;
     private String customerName;
+    @Id
+    private int id;
 
     public Customer() {
     }
@@ -49,5 +50,9 @@ public class Customer {
 
     public void setcustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    public int getId(){
+        return this.id;
     }
 }
