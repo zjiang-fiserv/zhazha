@@ -30,9 +30,10 @@ public class CustomerOrderService {
     }
 
     public Mono<CustomerOrder> update(int id, CustomerOrder customerOrder) {
-        return customerOrderRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
-                .flatMap(optionalCustomerOrder -> {
-                    if (optionalCustomerOrder.isPresent()) {
+        return customerOrderRepository.findById(id)
+                .flatMap(existingOrder -> {
+                    if (existingOrder != null) {
+                        customerOrder.setDateTtime(existingOrder.getDateTime());
                         customerOrder.setCustomerId(customerOrder.getCustomerNumber());
                         return customerOrderRepository.save(customerOrder);
                     }

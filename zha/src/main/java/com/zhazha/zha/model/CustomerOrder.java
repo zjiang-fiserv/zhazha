@@ -47,4 +47,8 @@ public class CustomerOrder {
         return dateTime;
     }
 
+    public void setDateTtime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
 }
