@@ -9,9 +9,9 @@ public class OrderItem {
     private int customerOrderId;
     private int quantity;
     
-    public OrderItem(int productId, int customerOrderId, int quantity) {
-        this.productId = productId;
+    public OrderItem(int customerOrderId, int productId, int quantity) {
         this.customerOrderId = customerOrderId;
+        this.productId = productId;
         this.quantity = quantity;
     }
 

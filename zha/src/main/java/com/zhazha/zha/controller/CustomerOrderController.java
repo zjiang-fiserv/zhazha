@@ -63,7 +63,7 @@ public class CustomerOrderController {
     @PostMapping("/customer_orders/orders")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<OrderItem> createOrderItem(
-        @RequestParam(required = true) int productId, int customerOrderId, int quantity) {
+        @RequestParam(required = true) int customerOrderId, int productId, int quantity) {
         return orderItemService.save(new OrderItem(
             customerOrderId,
             productId,

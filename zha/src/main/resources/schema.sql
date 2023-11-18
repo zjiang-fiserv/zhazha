@@ -29,8 +29,8 @@ CREATE TABLE IF NOT EXISTS CUSTOMER_ORDER (
 );
 CREATE TABLE IF NOT EXISTS Order_Item (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    product_id int NOT NULL,
     customer_order_id int NOT NULL,
+    product_id int NOT NULL,
     quantity int NOT NULL ,
     foreign key (product_id) references PRODUCT(id),
     foreign key (customer_order_id) references CUSTOMER_ORDER(id)
