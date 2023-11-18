@@ -1,6 +1,9 @@
 package com.zhazha.zha.model;
 
+import org.springframework.data.annotation.Id;
+
 public class Customer {
+    @Id
     private String customerNumber;
     private String customerAddress;
     private String zip;

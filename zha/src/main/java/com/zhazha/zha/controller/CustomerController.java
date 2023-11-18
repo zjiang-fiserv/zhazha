@@ -27,17 +27,19 @@ public class CustomerController {
 
     @GetMapping("/customers")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<Customer> getAllCustomers(@RequestParam(required = false) String name) {
-        if (name == null)
-            return customerService.findAll();
+    public Flux<Customer> getAllCustomers(@RequestParam(required = false) String customerName, String zip) {
+        if (customerName != null)
+            return customerService.findByCustomerName(customerName);
+        else if (zip != null)
+            return customerService.findByZip(zip);
         else
-            return customerService.findByCustomerName(name);
+            return customerService.findAll();
     }
 
-    @GetMapping("/customers/{number}")
+    @GetMapping("/customer/{number}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Customer> getCustomerById(@PathVariable("number") String number) {
-        return customerService.findByCustomerNumber(number);
+    public Mono<Customer> getCustomerByNumber(@PathVariable("number") String number) {
+        return customerService.findByCustomerNumber((number));
     }
 
     @PostMapping("/customers")
@@ -59,9 +61,4 @@ public class CustomerController {
         return customerService.deleteByCustomerNumber(number);
     }
 
-    @GetMapping("/customers/{zip}")
-    @ResponseStatus(HttpStatus.OK)
-    public Flux<Customer> findByZipCode(String zip) {
-        return customerService.findByZip(zip);
-    }
 }
