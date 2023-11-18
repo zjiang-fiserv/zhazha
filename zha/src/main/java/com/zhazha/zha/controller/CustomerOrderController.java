@@ -48,9 +48,9 @@ public class CustomerOrderController {
         return customerOrderService.findById(id);
     }
 
-    @GetMapping("/customer_orders/{customerOrderId}/orders")
+    @GetMapping("/customer_orders/{CUSTOMER_ORDER_ID}/orders")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<OrderItem> getOrderByCustomerId(@PathVariable("customerOrderId") int customerOrderId) {
+    public Flux<OrderItem> getByCustomerOrderId(@PathVariable("CUSTOMER_ORDER_ID") int customerOrderId) {
         return orderItemService.findByCustomerOrderId(customerOrderId);
     }
 
@@ -63,12 +63,7 @@ public class CustomerOrderController {
 
     @PostMapping("/customer_orders/orders")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<OrderItem> createOrderItem(@RequestParam(required = true) int customerOrderId, int productId, int quantity) {
-
-        //if statement to default to 1
-        // if (orderItem.getQuantity() == 0) {
-        //     orderItem.setQuantity(1);
-        // }
+    public Mono<OrderItem> createOrderItem(@RequestParam(required = true) int productId, int customerOrderId, int quantity) {
 
         return orderItemService.save(new OrderItem(customerOrderId,
                 productId, quantity));
