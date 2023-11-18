@@ -31,7 +31,7 @@ public class CustomerOrder {
         return customerNumber;
     }
 
-    public void setCustomerId(String customerNumber) {
+    public void setCustomerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
     }
 
@@ -47,7 +47,7 @@ public class CustomerOrder {
         return dateTime;
     }
 
-    public void setDateTtime(LocalDateTime dateTime) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
