@@ -31,12 +31,14 @@ public class CustomerOrderController {
 
     @GetMapping("/customer_orders")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<CustomerOrder> getAllCustomerOrders(
-        @RequestParam(required = false) String customerNumber) {
-            if (customerNumber != null)
-                return customerOrderService.findByCustomerNumber(customerNumber);
-            else
-                return customerOrderService.findAll();
+    public Flux<CustomerOrder> getAllCustomerOrders() {
+        return customerOrderService.findAll();
+    }
+
+    @GetMapping("/customer_orders/")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<CustomerOrder> getOrderByCustomerNumber(@RequestParam(required = false) String customerNumber) {
+        return customerOrderService.findByCustomerNumber(customerNumber);
     }
 
     @GetMapping("/customer_orders/{id}")
