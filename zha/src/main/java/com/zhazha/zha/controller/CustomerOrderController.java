@@ -37,7 +37,7 @@ public class CustomerOrderController {
 
     @GetMapping("/customer_orders/")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<CustomerOrder> getOrderByOrderId(@RequestParam(required = false) String customerNumber) {
+    public Flux<CustomerOrder> getOrderByCustomerNumber(@RequestParam(required = false) String customerNumber) {
         return customerOrderService.findByCustomerNumber(customerNumber);
     }
 
@@ -64,8 +64,10 @@ public class CustomerOrderController {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<OrderItem> createOrderItem(@RequestParam(required = true) int productId, int customerOrderId, int quantity) {
 
-        return orderItemService.save(new OrderItem(customerOrderId,
-                productId, quantity));
+        return orderItemService.save(new OrderItem(
+            customerOrderId,
+            productId,
+            quantity));
     }
 
     //Potentially update method for OrderItem

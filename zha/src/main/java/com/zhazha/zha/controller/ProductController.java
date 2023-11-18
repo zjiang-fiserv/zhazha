@@ -27,16 +27,18 @@ public class ProductController {
 
     @GetMapping("/products")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<Product> getAllProducts(@RequestParam(required = false) String name) {
-        if (name == null)
-            return productService.findAll();
+    public Flux<Product> getAllProducts(@RequestParam(required = false) String productName, String productDescription) {
+        if (productName != null)
+            return productService.findByProductName(productName);
+        else if (productDescription != null)
+            return productService.findByProductDescription(productDescription);
         else
-            return productService.findByProductName(name);
+            return productService.findAll();
     }
 
-    @GetMapping("/products/{number}")
+    @GetMapping("/products/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Product> getId(@PathVariable("number") int id) {
+    public Mono<Product> getId(@PathVariable("id") int id) {
         return productService.findById(id);
     }
 
