@@ -56,7 +56,7 @@ public class CustomerController {
     @DeleteMapping("/customers/{number}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> deleteCustomer(@PathVariable("number") String number) {
-        return customerService.deleteByNumber(number);
+        return customerService.deleteByCustomerNumber(number);
     }
 
     @GetMapping("/customers/{zip}")

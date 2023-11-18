@@ -48,7 +48,7 @@ public class CustomerService {
                 });
     }
 
-    public Mono<Void> deleteByNumber(String number) {
-        return customerRepository.deleteById(number);
+    public Mono<Void> deleteByCustomerNumber(String number) {
+        return customerRepository.deleteByCustomerNumber(number);
     }
 }
