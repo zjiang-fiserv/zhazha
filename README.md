@@ -6,16 +6,18 @@
 - **URL:** `/api/customers`
 - **Method:** `GET`
 - **Parameters:**
-  - `name` (optional) - Filter customers by name
+  - `customerNumber` (optional) - Filter customers by customer number
+  - `customerName` (optional) - Filter customers by name
+  - `zip` (optional) - Filter customers by zip code
 - **Response:**
   - Status Code: 200 (OK)
   - Body: Array of Customer objects
 
 ### Get Customer by ID
-- **URL:** `/api/customers/{number}`
+- **URL:** `/api/customers/{id}`
 - **Method:** `GET`
 - **Path Variables:**
-  - `{number}` - Customer number
+  - `{id}` - Customer number
 - **Response:**
   - Status Code: 200 (OK)
   - Body: Customer object
@@ -45,15 +47,6 @@
   - `{number}` - Customer number
 - **Response:**
   - Status Code: 204 (No Content)
-
-### Find Customers by Zip Code
-- **URL:** `/api/customers/{zip}`
-- **Method:** `GET`
-- **Path Variables:**
-  - `{zip}` - Customer zip code
-- **Response:**
-  - Status Code: 200 (OK)
-  - Body: Array of Customer objects
 
 ## Customer Orders
 
@@ -133,15 +126,18 @@
 ### Get All Employees
 - **URL:** `/api/employees`
 - **Method:** `GET`
+- **Parameters:**
+  - `employmentStatus` (optional) - Filter employees by employment status
+  - `role` (optional) - Filter employees by role
 - **Response:**
   - Status Code: 200 (OK)
   - Body: Array of Employee objects
 
 ### Get Employee by ID
-- **URL:** `/api/employees/{number}`
+- **URL:** `/api/employees/{id}`
 - **Method:** `GET`
 - **Path Variables:**
-  - `{number}` - Employee ID
+  - `{id}` - Employee ID
 - **Response:**
   - Status Code: 200 (OK)
   - Body: Employee object
@@ -154,6 +150,16 @@
   - Status Code: 201 (Created)
   - Body: Created Employee object
 
+### Update Employee
+- **URL:** `/api/employees/{number}`
+- **Method:** `PUT`
+- **Path Variables:**
+  - `{number}` - Employee ID
+- **Request Body:** Updated Employee object
+- **Response:**
+  - Status Code: 200 (OK)
+  - Body: Updated Employee object
+
 ### Delete Employee
 - **URL:** `/api/employees/{number}`
 - **Method:** `DELETE`
@@ -161,24 +167,6 @@
   - `{number}` - Employee ID
 - **Response:**
   - Status Code: 204 (No Content)
-
-### Find Employees by Status
-- **URL:** `/api/employees/status/{status}`
-- **Method:** `GET`
-- **Path Variables:**
-  - `{status}` - Employee status
-- **Response:**
-  - Status Code: 200 (OK)
-  - Body: Array of Employee objects
-
-### Find Employees by Role
-- **URL:** `/api/employees/roles/{role}`
-- **Method:** `GET`
-- **Path Variables:**
-  - `{role}` - Employee role
-- **Response:**
-  - Status Code: 200 (OK)
-  - Body: Array of Employee objects
 
 ## Order Details
 
@@ -208,7 +196,9 @@
   - Body: OrderDetail object
 
 ### Create Order Detail
-- **URL:** `/api/order_details`
+- **URL:**
+
+ `/api/order_details`
 - **Method:** `POST`
 - **Request Body:** OrderDetail object
 - **Response:**
@@ -239,16 +229,17 @@
 - **URL:** `/api/products`
 - **Method:** `GET`
 - **Parameters:**
-  - `name` (optional) - Filter products by name
+  - `productName` (optional) - Filter products by name
+  - `productDescription` (optional) - Filter products by description
 - **Response:**
   - Status Code: 200 (OK)
   - Body: Array of Product objects
 
 ### Get Product by ID
-- **URL:** `/api/products/{number}`
+- **URL:** `/api/products/{id}`
 - **Method:** `GET`
 - **Path Variables:**
-  - `{number}` - Product ID
+  - `{id}` - Product ID
 - **Response:**
   - Status Code: 200 (OK)
   - Body: Product object
