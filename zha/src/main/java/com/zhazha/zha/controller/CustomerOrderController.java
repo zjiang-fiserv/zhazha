@@ -70,7 +70,10 @@ public class CustomerOrderController {
             quantity));
     }
 
-    //Potentially update method for OrderItem
+    // NOTE, the current implementation of update is incorrect. 
+    // As it will update the the order time to be at the time of update, 
+    // rather than keeping the time at the creation of the order. 
+    // Figuring out how to access the optionalCustomerOrder in the service class will be key.
 
     @PutMapping("/customer_orders/{customerOrderId}")
     @ResponseStatus(HttpStatus.OK)
