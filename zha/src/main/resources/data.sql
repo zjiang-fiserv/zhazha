@@ -24,7 +24,7 @@ INSERT INTO CUSTOMER_ORDER (
     employee_id, 
     customer_number, 
     date_time)
-VALUES (333, 111, '1234567890', '1970-01-01 00:00:00');
+VALUES (333, 111, '1234567890', '2023-11-20 00:00:00');
 INSERT INTO Order_Item (
     id, 
     product_id, 

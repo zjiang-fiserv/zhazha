@@ -43,3 +43,4 @@ CREATE TABLE IF NOT EXISTS Order_Detail (
     foreign key (customer_order_id) references CUSTOMER_ORDER(id)
 );
 
+
