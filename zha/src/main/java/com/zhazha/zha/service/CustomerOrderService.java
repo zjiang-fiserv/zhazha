@@ -21,8 +21,12 @@ public class CustomerOrderService {
         return customerOrderRepository.findById(id);
     }
 
-    public Flux<CustomerOrder> findByCustomerNumber(String customerNumber) {
+    public Mono<CustomerOrder> findByCustomerNumber(String customerNumber) {
         return customerOrderRepository.findByCustomerNumber(customerNumber);
+    }
+    
+    public Mono<CustomerOrder> findByEmployeeId(int employeeId) {
+        return customerOrderRepository.findByEmployeeId(employeeId);
     }
 
     public Mono<CustomerOrder> save(CustomerOrder customerOrder) {
@@ -33,8 +37,11 @@ public class CustomerOrderService {
         return customerOrderRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
                 .flatMap(optionalCustomerOrder -> {
                     if (optionalCustomerOrder.isPresent()) {
-                        customerOrder.setCustomerId(customerOrder.getCustomerNumber());
-                        return customerOrderRepository.save(customerOrder);
+                        CustomerOrder updatedOrder = new CustomerOrder(
+                            customerOrder.getEmployeeId(), 
+                            customerOrder.getCustomerNumber());
+                        updatedOrder.setId(id);
+                        return customerOrderRepository.save(updatedOrder);
                     }
                     return Mono.empty();
                 });
@@ -43,16 +50,4 @@ public class CustomerOrderService {
     public Mono<Void> deleteById(int id) {
         return customerOrderRepository.deleteById(id);
     }
-    // SELECT
-    // co.customerOrderId,
-    // co.employeeId,
-    // co.customerNumber,
-    // co.dateTime,
-    // FROM
-    // CustomerOrder co
-    // JOIN
-    // Customer c ON co.customerNumber = c.customerNumber
-    // WHERE
-    // c.customerNumber = [desired_customer_number];
-    // sqlquery for selecting customerorder with customer phone number
 }

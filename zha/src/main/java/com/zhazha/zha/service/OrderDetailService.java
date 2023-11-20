@@ -29,11 +29,11 @@ public class OrderDetailService {
         return orderDetailRepository.save(orderDetail);
     }
 
-    public Mono<OrderDetail> update(int id, float total, int discount, OrderDetail orderDetail) {
+    public Mono<OrderDetail> update(int id, OrderDetail orderDetail) {
         return orderDetailRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
                 .flatMap(optionalOrderDetail -> {
                     if (optionalOrderDetail.isPresent()) {
-                        orderDetail.setDiscount(discount);
+                        orderDetail.setId(id);
                         return orderDetailRepository.save(orderDetail);
                     }
                     return Mono.empty();

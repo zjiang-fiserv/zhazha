@@ -33,10 +33,12 @@ public class OrderDetailController {
 
     @GetMapping("/order_details/")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<OrderDetail> getOrderDetailByCustomerOrderId(@RequestParam(required = false) int customerOrderId) {
+    public Mono<OrderDetail> getOrderDetailByCustomerOrderId(
+        @RequestParam(required = false) int customerOrderId) {
         return orderDetailService.findById(customerOrderId);
     }
 
+    //arguably useless end point currently, will revise
     @GetMapping("/order_details/{orderDetailId}")
     @ResponseStatus(HttpStatus.OK)
     public Mono<OrderDetail> getOrderDetailById(@PathVariable("orderDetailId") int orderDetailId) {
@@ -47,15 +49,15 @@ public class OrderDetailController {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<OrderDetail> createOrderDetail(@RequestBody OrderDetail orderDetail) {
         return orderDetailService.save(new OrderDetail(orderDetail.getCustomerOrderId(),
-                orderDetail.getDiscount(),orderDetail.getDiscount()));
-        // need to add get total to the order detail object at creation.
+                orderDetail.getDiscount(),orderDetail.getTotal()));
+        // concluded to have the front end calculate the total and pass as paramenter.
     }
 
     @PutMapping("/order_details/{orderDetailId}")
     @ResponseStatus(HttpStatus.OK)
     public Mono<OrderDetail> updateOrderDetail(@PathVariable("orderDetailId") int orderDetailId,
             @RequestBody OrderDetail orderDetail) {
-        return orderDetailService.update(orderDetail.getCustomerOrderId(), orderDetail.getTotal(), orderDetail.getDiscount(), orderDetail);
+        return orderDetailService.update(orderDetailId,  orderDetail);
     }
 
     @DeleteMapping("/order_details/{orderDetailId}")

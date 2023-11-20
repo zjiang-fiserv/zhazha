@@ -31,7 +31,7 @@ public class CustomerOrder {
         return customerNumber;
     }
 
-    public void setCustomerId(String customerNumber) {
+    public void setCustomerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
     }
 
@@ -45,6 +45,10 @@ public class CustomerOrder {
 
     public LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
 }

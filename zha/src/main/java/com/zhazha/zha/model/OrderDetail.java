@@ -12,7 +12,7 @@ public class OrderDetail {
     public OrderDetail() {
     };
 
-    public OrderDetail(int customerOrderId, float total, int discount) {
+    public OrderDetail(int customerOrderId, int discount, float total) {
         this.customerOrderId = customerOrderId;
         this.discount = discount;
         this.total = total;
@@ -20,6 +20,10 @@ public class OrderDetail {
 
     public int getID() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getCustomerOrderId() {
@@ -39,8 +43,8 @@ public class OrderDetail {
         return this.discount;
     }
 
-    public void calcTotal() {
-        // this.total = impelment getting all items on order from order item table
+    public void setTotal(float total) {
+        this.total = total;
     }
 
     public float getTotal() {

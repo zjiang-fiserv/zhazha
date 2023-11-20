@@ -6,12 +6,12 @@ public class OrderItem {
     @Id
     private int id;
     private int productId;
-    private int CustomerOrderId;
+    private int customerOrderId;
     private int quantity;
     
-    public OrderItem(int productId, int customerOrderId, int quantity) {
+    public OrderItem(int customerOrderId, int productId, int quantity) {
+        this.customerOrderId = customerOrderId;
         this.productId = productId;
-        this.CustomerOrderId = customerOrderId;
         this.quantity = quantity;
     }
 
@@ -28,11 +28,11 @@ public class OrderItem {
     }
 
     public int getCustomerOrderId() {
-        return CustomerOrderId;
+        return customerOrderId;
     }
 
     public void setCustomerOrderId(int customerOrderId) {
-        CustomerOrderId = customerOrderId;
+        this.customerOrderId = customerOrderId;
     }
 
     public int getQuantity() {

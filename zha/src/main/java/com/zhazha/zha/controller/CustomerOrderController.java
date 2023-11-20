@@ -1,7 +1,6 @@
 package com.zhazha.zha.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.TrueCondition;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,7 +37,7 @@ public class CustomerOrderController {
 
     @GetMapping("/customer_orders/")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<CustomerOrder> getOrderByOrderId(@RequestParam(required = false) String customerNumber) {
+    public Mono<CustomerOrder> getOrderByCustomerNumber(@RequestParam(required = false) String customerNumber) {
         return customerOrderService.findByCustomerNumber(customerNumber);
     }
 
@@ -48,9 +47,9 @@ public class CustomerOrderController {
         return customerOrderService.findById(id);
     }
 
-    @GetMapping("/customer_orders/{customerOrderId}/orders")
+    @GetMapping("/customer_orders/{CUSTOMER_ORDER_ID}/orders")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<OrderItem> getOrderByCustomerId(@PathVariable("customerOrderId") int customerOrderId) {
+    public Flux<OrderItem> getByCustomerOrderId(@PathVariable("CUSTOMER_ORDER_ID") int customerOrderId) {
         return orderItemService.findByCustomerOrderId(customerOrderId);
     }
 
@@ -63,18 +62,18 @@ public class CustomerOrderController {
 
     @PostMapping("/customer_orders/orders")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<OrderItem> createOrderItem(@RequestParam(required = true) int customerOrderId, int productId, int quantity) {
-
-        //if statement to default to 1
-        // if (orderItem.getQuantity() == 0) {
-        //     orderItem.setQuantity(1);
-        // }
-
-        return orderItemService.save(new OrderItem(customerOrderId,
-                productId, quantity));
+    public Mono<OrderItem> createOrderItem(
+        @RequestParam(required = true) int customerOrderId, int productId, int quantity) {
+        return orderItemService.save(new OrderItem(
+            customerOrderId,
+            productId,
+            quantity));
     }
 
-    //Potentially update method for OrderItem
+    // NOTE, the current implementation of update is incorrect. 
+    // As it will update the the order time to be at the time of update, 
+    // rather than keeping the time at the creation of the order. 
+    // Figuring out how to access the optionalCustomerOrder in the service class will be key.
 
     @PutMapping("/customer_orders/{customerOrderId}")
     @ResponseStatus(HttpStatus.OK)

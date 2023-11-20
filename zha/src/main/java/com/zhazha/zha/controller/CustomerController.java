@@ -27,17 +27,22 @@ public class CustomerController {
 
     @GetMapping("/customers")
     @ResponseStatus(HttpStatus.OK)
-    public Flux<Customer> getAllCustomers(@RequestParam(required = false) String name) {
-        if (name == null)
-            return customerService.findAll();
+    public Flux<Customer> getAllCustomers(
+        @RequestParam(required = false) String customerNumber, String customerName, String zip) {
+        if (customerNumber != null)
+            return customerService.findByCustomerNumber(customerNumber);
+        else if (customerName != null)
+            return customerService.findByCustomerName(customerName);
+        else if (zip != null)
+            return customerService.findByZip(zip);
         else
-            return customerService.findByCustomerName(name);
+            return customerService.findAll();
     }
 
-    @GetMapping("/customers/{number}")
+    @GetMapping("/customer/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Customer> getCustomerById(@PathVariable("number") String number) {
-        return customerService.findByCustomerNumber(number);
+    public Flux<Customer> getCustomerByNumber(@PathVariable("id") String id) {
+        return customerService.findByCustomerNumber((id));
     }
 
     @PostMapping("/customers")
@@ -49,19 +54,16 @@ public class CustomerController {
 
     @PutMapping("/customers/{number}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Customer> updateCustomer(@PathVariable("number") String number, @RequestBody Customer customer) {
+    public Flux<Customer> updateCustomer(
+        @PathVariable("number") String number, 
+        @RequestBody Customer customer) {
         return customerService.update(number, customer);
     }
 
     @DeleteMapping("/customers/{number}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> deleteCustomer(@PathVariable("number") String number) {
-        return customerService.deleteByNumber(number);
+        return customerService.deleteByCustomerNumber(number);
     }
 
-    @GetMapping("/customers/{zip}")
-    @ResponseStatus(HttpStatus.OK)
-    public Flux<Customer> findByZipCode(String zip) {
-        return customerService.findByZip(zip);
-    }
 }
