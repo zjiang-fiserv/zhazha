@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.zhazha.zha.model.OrderDetail;
+import com.zhazha.zha.model.CustomerAndTime;
+import com.zhazha.zha.model.EmployeeByWeek;
 import com.zhazha.zha.service.OrderDetailService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -43,6 +45,18 @@ public class OrderDetailController {
     @ResponseStatus(HttpStatus.OK)
     public Mono<OrderDetail> getOrderDetailById(@PathVariable("orderDetailId") int orderDetailId) {
         return orderDetailService.findById(orderDetailId);
+    }
+
+    @GetMapping("/order_details/customertime/{orderDetailId}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<CustomerAndTime> findCustomerAndTime(@PathVariable("orderDetailId") int orderDetailId) {
+        return orderDetailService.findCustomerAndTime(orderDetailId);
+    }
+
+    @GetMapping("/order_details/employeebyweek/{employeeID}")
+    @ResponseStatus(HttpStatus.OK)
+    public Flux<EmployeeByWeek> findEmployeeByWeek(@PathVariable("employeeID") int employeeID) {
+        return orderDetailService.findEmployeeByWeek(employeeID);
     }
 
     @PostMapping("/order_details")

@@ -3,6 +3,9 @@ package com.zhazha.zha.service;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.zhazha.zha.model.CustomerAndTime;
+import com.zhazha.zha.model.EmployeeByWeek;
 import com.zhazha.zha.model.OrderDetail;
 import com.zhazha.zha.repository.OrderDetailRepository;
 import reactor.core.publisher.Flux;
@@ -42,5 +45,13 @@ public class OrderDetailService {
 
     public Mono<Void> deleteById(int id) {
         return orderDetailRepository.deleteById(id);
+    }
+
+    public Mono<CustomerAndTime> findCustomerAndTime(int orderDetailId){
+        return orderDetailRepository.findCustomerAndTime(orderDetailId);
+    }
+
+    public Flux<EmployeeByWeek> findEmployeeByWeek(int employeeId){
+        return orderDetailRepository.findEmployeeByWeek(employeeId);
     }
 }
