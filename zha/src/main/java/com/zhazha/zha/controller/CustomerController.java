@@ -49,7 +49,20 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Customer> createCustomer(@RequestBody Customer customer) {
         return customerService.save(new Customer(customer.getCustomerNumber(), customer.getCustomerAddress(),
+<<<<<<< Updated upstream
                 customer.getZip(), customer.getCustomerName()));
+=======
+                customer.getZip(), customer.getCustomerName()))
+                .thenReturn(ResponseEntity.status(HttpStatus.CREATED).body("Customer created successfully"))
+                .onErrorResume(DuplicateKeyException.class, e ->
+                        Mono.just(ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT)
+                                .body("Bad input: Duplicate customer number"))
+                )
+                .onErrorResume(Exception.class, e ->
+                        Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                .body("An error occurred"))
+                );
+>>>>>>> Stashed changes
     }
 
     @PutMapping("/customers/{number}")

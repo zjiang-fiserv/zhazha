@@ -2,9 +2,10 @@ INSERT INTO CUSTOMER (
         customer_number,
         customer_address,
         customer_name,
-        zip
+        zip,
+        id
     )
-VALUES ('1234567890', '123 Connell Dr', 'Frank', '12345');
+VALUES ('1234567890', '123 Connell Dr', 'Frank', '12345', 888);
 INSERT INTO EMPLOYEE (
         id,
         employee_name,
