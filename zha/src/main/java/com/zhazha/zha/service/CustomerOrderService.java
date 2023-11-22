@@ -4,9 +4,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.zhazha.zha.model.CustomerOrder;
+import com.zhazha.zha.model.OrdersByZipAndWeek;
 import com.zhazha.zha.repository.CustomerOrderRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import org.springframework.data.r2dbc.repository.Query;
 
 @Service
 public class CustomerOrderService {
@@ -49,5 +51,9 @@ public class CustomerOrderService {
 
     public Mono<Void> deleteById(int id) {
         return customerOrderRepository.deleteById(id);
+    }
+
+    public Mono<OrdersByZipAndWeek> findOrdersByZipAndWeek(String zip) {
+        return customerOrderRepository.findOrdersByZipAndWeek(zip);
     }
 }

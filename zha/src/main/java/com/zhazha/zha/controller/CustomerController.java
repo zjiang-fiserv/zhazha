@@ -1,7 +1,9 @@
 package com.zhazha.zha.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,9 +49,18 @@ public class CustomerController {
 
     @PostMapping("/customers")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Customer> createCustomer(@RequestBody Customer customer) {
+    public Mono<ResponseEntity<String>> createCustomer(@RequestBody Customer customer) {
         return customerService.save(new Customer(customer.getCustomerNumber(), customer.getCustomerAddress(),
-                customer.getZip(), customer.getCustomerName()));
+                customer.getZip(), customer.getCustomerName()))
+                .thenReturn(ResponseEntity.status(HttpStatus.CREATED).body("Customer created successfully"))
+                .onErrorResume(DuplicateKeyException.class, e ->
+                        Mono.just(ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT)
+                                .body("Bad input: Duplicate customer number"))
+                )
+                .onErrorResume(Exception.class, e ->
+                        Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                .body("An error occurred"))
+                );
     }
 
     @PutMapping("/customers/{number}")

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zhazha.zha.model.CustomerOrder;
 import com.zhazha.zha.service.CustomerOrderService;
 import com.zhazha.zha.model.OrderItem;
+import com.zhazha.zha.model.OrdersByZipAndWeek;
 import com.zhazha.zha.service.OrderItemService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -86,5 +87,11 @@ public class CustomerOrderController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> deleteCustomerOrder(@PathVariable("customerOrderId") int customerOrderId) {
         return customerOrderService.deleteById(customerOrderId);
+    }
+
+    @GetMapping("/customer_orders/weekly/{zip}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<OrdersByZipAndWeek> findOrdersByZipAndWeek(@PathVariable String zip) {
+        return customerOrderService.findOrdersByZipAndWeek(zip);
     }
 }
