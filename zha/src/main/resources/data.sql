@@ -13,13 +13,22 @@ INSERT INTO EMPLOYEE (
         pin,
         employee_role
     )
-VALUES (111, 'Guy', 'Full', 1234, 'Manager');
+VALUES (111, 'Guy', 'Active', 1234, 'Manager');
 INSERT INTO PRODUCT (
     id, 
     product_name, 
     product_description, 
     price)
-VALUES (222, 'Pepperoni', '18 inches', 20.00);
+VALUES 
+(222, 'Pepperoni', '18 inches', 20.00),
+(301, 'Soda', '2 liter bottle', 3.25),
+(302, 'Breadsticks', '8 per pack', 2.50),
+(303, 'Pizza - small Pepperoni', '8 inch', 7.35),
+(304, 'Pizza - medium Pepperoni', '12 inch', 9.35),
+(305, 'Pizza - large Pepperoni', '18 inch', 14.00),
+(306, 'small House special', '8 inch', 8.50),
+(307, 'medium House special', '12 inch', 10.50),
+(308, 'Pizza – large House special', '18 inch', 16.00);
 INSERT INTO CUSTOMER_ORDER (
     id, 
     employee_id, 
